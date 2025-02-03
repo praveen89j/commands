@@ -1,0 +1,117 @@
+tstreg0055.azurecr.io
+
+28e1e42a-4438-4c30-9a5f-7d7b488fd883
+
+az acr login --name tstreg0055.azurecr.io
+	az acr login -n tstreg0055 --expose-token
+
+docker tag nodejs tstreg0055.azurecr.io/my-image
+docker push tstreg0055	.azurecr.io/my-image
+
+
+az vm create \
+  --resource-group 1-773d5f2e-playground-sandbox \
+  --name MyLinuxVM453 \
+  --image ubuntu-24_04-lts \
+  --admin-username myusername \
+  --admin-password Azureuser@20 \
+  --authentication-type password
+  
+  
+ssh myusername@IP Address
+
+sudo apt-get update
+
+install docker
+--------------
+Step 1: Update the apt cache.
+
+sudo apt-get update -y
+Step 2: Add the GPG key.
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+Step 3: Add the docker apt repository.
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+Step 4: Update the apt cache again.
+
+sudo apt-get update -y
+Step 5: Install all docker components.
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+
+Step 6: Verify the Docker installation
+
+sudo docker version
+
+create new image : sudo docker build -t  gokuljpk/mynodeapp .
+
+sudo docker image ls
+
+sudo docker run -d -p 80:8080 --name mynodeapp gokuljpk/mynodeapp:latest 
+
+sudo docker ps
+
+sudo docker stop mynodeapp
+
+sudo docker rm mynodeapp
+
+sudo docker ps
+
+Kubernetes install minikube 
+
+https://docs.docker.com/engine/install/ubuntu/
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+https://docs.docker.com/engine/install/linux-postinstall/
+
+minikube start
+
+
+kubectl
+-----------
+curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+
+curl -LO https://dl.k8s.io/release/v1.28.4/bin/linux/amd64/kubectl
+
+curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256
+
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+kubectl get deployments
+
+kubectl get pods
+
+kubectl apply -f deployment.yaml
+
+kubectl get pod -o wide
+
+kubectl apply -f service.yaml 
+
+kubectl expose deployment first-app --type=LoadBalancer --port=8080
+kubectl expose deployment first-app --type=LoadBalancer --port=8080
+
+kubectl expose deployment nginx-deployment --port=8765 --target-port=80 --name=nginx-deployment --type=LoadBalancer
+
+
+kubectl get services
+
+sudo docker build -t webapp .
+sudo docker image ls
+sudo docker run -d -p 80:80 webapp
+sudo docker ps -a 
+sudo az acr login --name test122 --username test122 --password XXXXXX
+sudo docker tag webapp test122.azurecr.io/webapp
+sudo docker push test122.azurecr.io/webapp
+
+
+  
+ 
