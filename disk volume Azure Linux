@@ -1,0 +1,85 @@
+sudo su -
+to first inside root
+
+lsblk 
+check the disk list
+
+fdisk /dev/sdc 
+format the disk
+
+
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (1-4, default 1): 1
+First sector (2048-20971519, default 2048): 2048
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-20971519, default 20971519): 20971519
+
+Created a new partition 1 of type 'Linux' and of size 10 GiB.
+
+Command (m for help): m
+
+Help:
+
+  DOS (MBR)
+   a   toggle a bootable flag
+   b   edit nested BSD disklabel
+   c   toggle the dos compatibility flag
+
+  Generic
+   d   delete a partition
+   F   list free unpartitioned space
+   l   list known partition types
+   n   add a new partition
+   p   print the partition table
+   t   change a partition type
+   v   verify the partition table
+   i   print information about a partition
+
+  Misc
+   m   print this menu
+   u   change display/entry units
+   x   extra functionality (experts only)
+
+  Script
+   I   load disk layout from sfdisk script file
+   O   dump disk layout to sfdisk script file
+
+  Save & Exit
+   w   write table to disk and exit
+   q   quit without saving changes
+
+  Create a new label
+   g   create a new empty GPT partition table
+   G   create a new empty SGI (IRIX) partition table
+   o   create a new empty MBR (DOS) partition table
+   s   create a new empty Sun partition table
+
+
+Command (m for help): p
+Disk /dev/sdc: 10 GiB, 10737418240 bytes, 20971520 sectors
+Disk model: Virtual Disk    
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: dos
+Disk identifier: 0xe1a5313f
+
+Device     Boot Start      End  Sectors Size Id Type
+/dev/sdc1        2048 20971519 20969472  10G 83 Linux
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+
+post this create filesystem
+
+mkfs.ext4 /dev/sdc1
+Creating filesystem
+
+mkdir /app
+
+mount /dev/sdc1 /app
