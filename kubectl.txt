@@ -1,0 +1,37 @@
+Here are some of the commands we will run in the next few steps (Refer back to this if you have any problems!)
+1.	gcloud config set project my-kubernetes-project-304910
+2.	gcloud container clusters get-credentials my-cluster --zone us-central1-c --project my-kubernetes-project-304910
+3.	kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
+4.	kubectl get deployment
+5.	kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+6.	kubectl get services
+7.	kubectl get services --watch
+8.	curl 35.184.204.214:8080/hello-world
+9.	kubectl scale deployment hello-world-rest-api --replicas=3
+10.	gcloud container clusters resize my-cluster --node-pool default-pool --num-nodes=2 --zone=us-central1-c
+11.	kubectl autoscale deployment hello-world-rest-api --max=4 --cpu-percent=70
+12.	kubectl get hpa
+13.	kubectl create configmap hello-world-config --from-literal=RDS_DB_NAME=todos
+14.	kubectl get configmap
+15.	kubectl describe configmap hello-world-config
+16.	kubectl create secret generic hello-world-secrets-1 --from-literal=RDS_PASSWORD=dummytodos
+17.	kubectl get secret
+18.	kubectl describe secret hello-world-secrets-1
+19.	kubectl apply -f deployment.yaml
+20.	gcloud container node-pools list --zone=us-central1-c --cluster=my-cluster
+21.	kubectl get pods -o wide
+22.	 
+23.	kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
+24.	kubectl get services
+25.	kubectl get replicasets
+26.	kubectl get pods
+27.	kubectl delete pod hello-world-rest-api-58dc9d7fcc-8pv7r
+28.	 
+29.	kubectl scale deployment hello-world-rest-api --replicas=1
+30.	kubectl get replicasets
+31.	gcloud projects list
+32.	 
+33.	kubectl delete service hello-world-rest-api
+34.	kubectl delete deployment hello-world-rest-api
+35.	gcloud container clusters delete my-cluster --zone us-central1-c
+
